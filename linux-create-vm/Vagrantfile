@@ -1,0 +1,65 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+BOX_IMAGE = "ubuntu/xenial64"
+NODE_COUNT = 2
+LDAPHOSTNAME = "ubuntu-ldap"
+
+# Where to sync to on Guest — 'vagrant' is the default user name
+#GUEST_PATH = '/var/www/html'
+# Database Configuration
+mysql_root_password   = "root"   # We'll assume user "root"
+mysql_version         = "5.5"    # Options: 5.5 | 5.6
+mysql_enable_remote   = "false"  # remote access enabled when true
+pgsql_root_password   = "root"   # We'll assume user "root"
+mongo_version         = "2.6"    # Options: 2.6 | 3.0
+mongo_enable_remote   = "false"  # remote access enabled when true
+
+Vagrant.configure("2") do |config|
+  # All Vagrant configuration is done here. The most common configuration
+  # options are documented and commented below. For a complete reference,
+  # please see the online documentation at vagrantup.com.
+	# LDAP Server
+	config.vm.define LDAPHOSTNAME do |master|
+      master.vm.box = BOX_IMAGE
+	    master.vm.provider "virtualbox" do |vbldap|
+        vbldap.name = LDAPHOSTNAME
+        vbldap.memory = "256"  
+	  end
+      master.vm.hostname = LDAPHOSTNAME
+      master.vm.network "private_network", ip: "192.168.100.10"
+      master.vm.network "forwarded_port", guest:80, host:8010, auto_correct: false
+      if not FileTest::directory?('./'+LDAPHOSTNAME)
+        Dir::mkdir('./'+LDAPHOSTNAME)
+      end
+      master.vm.synced_folder './'+LDAPHOSTNAME, "/vagrant"
+      master.vm.provision "shell", path: "scripts/apache-setup.sh"
+      # localhost:8010/phpldapadmin/
+      master.vm.provision "shell", path: "scripts/ldap-setup.sh"
+    end
+  (1..NODE_COUNT).each do |i|
+    HOSTNAME = "ubuntu-#{i}"
+    config.vm.define HOSTNAME do |subconfig|
+      subconfig.vm.box = BOX_IMAGE
+      subconfig.vm.network "private_network", ip: "192.168.100.#{i + 10}"
+      subconfig.vm.network "forwarded_port", guest:80, host:"80#{i + 10}", auto_correct: true
+      subconfig.vm.provider "virtualbox" do |vb|
+        # The VM will be named as ubuntu-{i}
+        #vb.name = HOSTNAME
+        vb.memory = "512"
+      #end
+      end
+      # Shell Scripts Provision
+      subconfig.vm.provision "shell", path: "scripts/vm-update.sh"
+      subconfig.vm.provision "shell", path: "scripts/apache-setup.sh"
+      subconfig.vm.provision "shell", path: "scripts/mysql-setup.sh", args: [mysql_root_password, mysql_version, mysql_enable_remote]
+      #config.vm.provision "shell", path: "scripts/database-setup.sh"
+      subconfig.vm.provision "shell", path: "scripts/phpmyadmin-setup.sh"
+      #subconfig.vm.provision "shell", path: "scripts/ftp-setup.sh"
+      #config.vm.provision "shell", path: "scripts/ldap-setup.sh"
+      # Last Execution
+      # config.vm.provision "shell", path: "scripts/reboot.sh"
+    end
+    # Enable agent forwarding over SSH connections
+    config.ssh.forward_agent = true
+  end
+end
