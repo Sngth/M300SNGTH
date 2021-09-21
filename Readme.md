@@ -118,6 +118,8 @@ Mit dem Befehl "vagrant list-commands" werden alle Befehle aufgeführt:
 ***
 ![Netzwerkplan](https://github.com/Sngth/M300SNGTH/blob/main/assets/Bilder/Netzwerkplan.png?raw=true)
 
+Die IPs werden automatisch und statisch vergeben sodass kein Konflikt besteht falls eine IP verwendet wird, wird die IP nicht verwendet.
+
 ### Sicherheitsaspekte
 ***
 * Server mit den neusten Sicherheitspatches installiert
