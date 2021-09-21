@@ -111,7 +111,7 @@ Mit dem Befehl "vagrant list-commands" werden alle Befehle aufgeführt:
 
 ### Netzwerkplan
 ***
-![Netzwerkplan](https://github.com/Sngth/M300/blob/master/00-Personelles/assets/Bilder/Netzwerkplan.png?raw=true)
+![Netzwerkplan](https://github.com/Sngth/M300SNGTH/blob/main/assets/Bilder/Netzwerkplan.png?raw=true)
 ### Sicherheitsaspekte
 ***
 * Systeme Passwortgeschützt
