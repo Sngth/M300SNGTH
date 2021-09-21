@@ -37,7 +37,9 @@ Wir haben hier mit Vagrant gearbeitet, was für mich etwas Neues ist, da ich noc
 
 #### 08 September 2021
 ***
-Heute habe ich weiter an meinem Vagrantfile gearbeitet. Ich habe es geschafft, mehrere VMs mit einer Schleife zu erstellen und externe SH-Skripte zuzuweisen. IP werden auch automatisch über die Nummer erstellt und ich kann auf das System entweder über localhost:port oder auch über die zugewiesene IP zugreifen. Nachher habe ich noch einen LDAP Server im Script implementiert.
+Heute habe ich weiter an meinem Vagrantfile gearbeitet. Am Anfang wollte ich ein Projekt mit Windows machen leider klappte es nicht so wie gewollt, da ich sehr viele Probleme hatte, aber nachher endschied ich mich für Linux da es viel besser und eifacher lauft zum Sachen automatisieren
+
+Ich habe es geschafft, mehrere VMs mit einer Schleife zu erstellen und externe SH-Skripte zuzuweisen. IP werden auch automatisch über die Nummer erstellt und ich kann auf das System entweder über localhost:port oder auch über die zugewiesene IP zugreifen. Nachher habe ich noch einen LDAP Server im Script implementiert.
 
 ##### Probleme
 * Vagrant gab beim Starten eine Menge Fehlermeldungen aus. Durch ein Forum konnte ich das Problem beheben und weiterarbeiten.
@@ -52,7 +54,7 @@ Heute habe ich weiter an meinem Vagrantfile gearbeitet. Ich habe es geschafft, m
 ##### Vagrant
 * Mehrere Vms mit Loop erstellen
 * Datenbank erstellen
-
+* Für die automatische Konfiguration von VirtualBox Guest Additions installieren `vagrant-vbguest`:<br>`vagrant plugin install vagrant-vbguest`
 ##### Git
 * -
 
@@ -226,6 +228,8 @@ Nach dem Update wir Apache installiert:
 ### Reflexion
 ***
 Vor diesem Projekt hatte ich noch nie etwas von Vagrant gehört, es war sehr neu für mich. Am Anfang hatte ich ein bisschen Mühe, alles zu verarbeiten, aber nach ein paar Mal hatte ich den Dreh raus. Am Anfang habe ich die Dokumentation etwas vernachlässigt oder besser gesagt vergessen.In der Dokumentation habe ich einen Spickzettel für Befehle gemacht, damit ich ein bisschen den Überblick habe, was welcher Befehl macht. 
+
+Am Anfang wollte ich ein Projekt mit Windows machen leider funktionierte es nicht so wie gewollt. Nach dieses Fehlschlägen habe ich mich für ein Projekt mit Linux entschieden, was ich auch im Endeffekt auch im Betrieb demnächst benutzen kann für ein kommendes Projekt.
 
 ### GitHub README.md:
 
