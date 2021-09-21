@@ -15,7 +15,7 @@ Diese Tools haben wir installiert:
 * Vagrant
 * Visual Studio Code
 
-Wir haben hier mit Vagrant gearbeitet, was für mich etwas Neues ist, da ich noch nie mit diesem Tool gearbeitet habe. Was sehr angenehm ist, ist dass man eine oder mehrere VMs per Skript automatisch erstellen kann, was sehr komfortabel ist. Da ich manchmal mehrere VMs mit der gleichen Konfiguration erstellen muss, ist das Modul eine Hilfe für mich, um Dinge zu automatisieren.
+Wir haben hier mit Vagrant gearbeitet, was für mich etwas Neues ist, da ich noch nie mit diesem Tool gearbeitet habe. Was sehr angenehm ist, ist dass man eine oder mehrere VMs per Skript automatisch erstellen kann, was sehr komfortabel ist. Da ich manchmal mehrere VMs mit der gleichen Konfiguration erstellen muss, ist das Modul eine Hilfe für mich, um Dinge zu automatisieren. Desöfteren habe ich Probleme mit Virtualbox er löscht die VM aber er löscht Sie nicht und wenn man diese löschen möchte muss man zuerst den PC neustarten was sehr mühsam war.
 
 ##### Probleme
 * Heute gab es keine Probleme
@@ -42,7 +42,7 @@ Heute habe ich weiter an meinem Vagrantfile gearbeitet. Am Anfang wollte ich ein
 Ich habe es geschafft, mehrere VMs mit einer Schleife zu erstellen und externe SH-Skripte zuzuweisen. IP werden auch automatisch über die Nummer erstellt und ich kann auf das System entweder über localhost:port oder auch über die zugewiesene IP zugreifen. Nachher habe ich noch einen LDAP Server im Script implementiert.
 
 ##### Probleme
-* Vagrant gab beim Starten eine Menge Fehlermeldungen aus. Durch ein Forum konnte ich das Problem beheben und weiterarbeiten.
+* Vagrant gab beim Starten eine Menge Fehlermeldungen aus. Durch ein Forum konnte ich das Problem beheben und weiterarbeiten. Desöfteren habe ich Probleme mit Virtualbox er löscht die VM aber er löscht Sie nicht und wenn man diese löschen möchte muss man zuerst den PC neustarten was sehr mühsam war. 
 
 #### Mein Wissenstand
 ##### Linux
@@ -55,6 +55,7 @@ Ich habe es geschafft, mehrere VMs mit einer Schleife zu erstellen und externe S
 * Mehrere Vms mit Loop erstellen
 * Datenbank erstellen
 * Für die automatische Konfiguration von VirtualBox Guest Additions installieren `vagrant-vbguest`:<br>`vagrant plugin install vagrant-vbguest`
+
 ##### Git
 * -
 
@@ -230,6 +231,10 @@ Nach dem Update wir Apache installiert:
 Vor diesem Projekt hatte ich noch nie etwas von Vagrant gehört, es war sehr neu für mich. Am Anfang hatte ich ein bisschen Mühe, alles zu verarbeiten, aber nach ein paar Mal hatte ich den Dreh raus. Am Anfang habe ich die Dokumentation etwas vernachlässigt oder besser gesagt vergessen.In der Dokumentation habe ich einen Spickzettel für Befehle gemacht, damit ich ein bisschen den Überblick habe, was welcher Befehl macht. 
 
 Am Anfang wollte ich ein Projekt mit Windows machen leider funktionierte es nicht so wie gewollt. Nach dieses Fehlschlägen habe ich mich für ein Projekt mit Linux entschieden, was ich auch im Endeffekt auch im Betrieb demnächst benutzen kann für ein kommendes Projekt.
+
+Beim arbeiten dieses Projektes habe ich fast nie mit Git bash gearbeitet nur mit VS, Virtualbox und Github Desktop, der Vorteil beim VS Code man kann alles in einem machen ich konnte im VS einen Terminal aufmachen und dort die Befehle ausführen oder die Daten ins Respository pushen.
+
+Beim Lernfortschritt habe ich sehr vieles in Vagrant gelernt, aber bei Linux und Co habe ich fast nichts neues kennengelernt, da ich sehr vieles schon durch die anderen Module und Lehrbetrieb kannte.
 
 ### GitHub README.md:
 
