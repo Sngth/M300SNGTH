@@ -23,11 +23,14 @@ Wir haben hier mit Vagrant gearbeitet, was für mich etwas Neues ist, da ich noc
 #### Mein Wissenstand
 ##### Linux
 * Linux kannte ich bereits schon von den vergangenen Modulen. Verwende es auch teilweise im Betrieb für Fehlerbehebungen im Netz oder im Bereich Dateien.
+
 ##### Virtualisierung
 * Wir haben in der Schule und im ÜK viel mit Virtualisierung gemacht. Im Betrieb verwenden wir auch eine Virtualisierungsumgebung
+
 ##### Vagrant
 * Mit den Vorlagen vom Lehrer habe ich mal Vagrant ausprobiert.
 * Vagrant neu kennengelernt -Vagrantfile erstellt und editiert -Vagrant init/up/destroy -f
+
 ##### Git
 * Git kannte ich bereits schon von den vergangenen Modulen
 * Repository erstellt mit einem Readme.md
@@ -36,18 +39,20 @@ Wir haben hier mit Vagrant gearbeitet, was für mich etwas Neues ist, da ich noc
 ***
 Heute habe ich weiter an meinem Vagrantfile gearbeitet. Ich habe es geschafft, mehrere VMs mit einer Schleife zu erstellen und externe SH-Skripte zuzuweisen. IP werden auch automatisch über die Nummer erstellt und ich kann auf das System entweder über localhost:port oder auch über die zugewiesene IP zugreifen. Nachher habe ich noch einen LDAP Server im Script implementiert.
 
-
 ##### Probleme
 * Vagrant gab beim Starten eine Menge Fehlermeldungen aus. Durch ein Forum konnte ich das Problem beheben und weiterarbeiten.
 
 #### Mein Wissenstand
 ##### Linux
 * -
+
 ##### Virtualisierung
 * -
+
 ##### Vagrant
 * Mehrere Vms mit Loop erstellen
 * Datenbank erstellen
+
 ##### Git
 * -
 
@@ -112,23 +117,49 @@ Mit dem Befehl "vagrant list-commands" werden alle Befehle aufgeführt:
 ### Netzwerkplan
 ***
 ![Netzwerkplan](https://github.com/Sngth/M300SNGTH/blob/main/assets/Bilder/Netzwerkplan.png?raw=true)
+
 ### Sicherheitsaspekte
 ***
+* Server mit den neusten Sicherheitspatches installiert
 * Systeme Passwortgeschützt
 * UFW Firewall aktivieren
 * Zugang nur via SSH
 
+#### LDAP
+Während der Installation wird die LDAPSeite durch User und Passwort geschützt.
+
+#### Apache Webserver
+Nach der Apache Installation wird noch ein Reverse Proxy für den Webserver installiert
+```
+    $ sudo a2enmod proxy
+    $ sudo a2enmod proxy_http
+    $ sudo a2enmod proxy_balancer
+    $ sudo a2enmod lbmethod_byrequests
+```
+
+#### MySQL
+Mit MySql Secure Installation schützt die Datenbank und der User wird mit einem Passwort geschützt
+
+#### PHPMyadmin
+Während der Installation wird die PHPSeite durch User und Passwort geschützt.
+
 #### Firewall
 | Server | Firewall Rules |
 |:-:|-|
-| ubuntu-ldap | sudo ufw allow 80/tcp<br>sudo ufw allow 22/tcp |
-| ubuntu-xx | sudo ufw allow 80/tcp<br>sudo ufw allow 22/tcp |
+| ubuntu-ldap | sudo ufw allow 'Apache'<br>sudo ufw allow 80/tcp<br>sudo ufw allow 22/tcp<br>sudo ufw default deny incoming<br>sudo ufw default allow outgoing |
+| ubuntu-xx | sudo ufw allow 'Apache'<br>sudo ufw allow 22/tcp<br>sudo ufw default deny incoming<br>sudo ufw default allow outgoing |
 
 #### Zugriff via SSH tunnel
 Sobald die VMs eingerichtet sind (`vagrant up`), sind sie über:
 ```shell
-vagrant ssh ubuntu-ldap
-vagrant ssh ubuntu-xx
+    vagrant ssh ubuntu-ldap
+    vagrant ssh ubuntu-xx
+```
+
+#### Fail2Ban installiert
+fail2ban ist ein Set aus Client, Server und Konfigurationsdateien, welches Logdateien überwacht, dort nach vordefinierten Mustern sucht und nach diesen temporär IP-Adressen sperrt. Ziel des Programms ist, alle Serverdienste gegen Angriffe des Typs Denial of Service (DoS) abzusichern.
+```
+    $sudo apt-get install fail2ban -y
 ```
 
 ### Technische Angaben
@@ -141,6 +172,7 @@ Bevor Tools installiert werden ihm diese commands:
     $ sudo apt update && sudo apt upgrade -y
     $ sudo apt autoremove -y
 ```
+
 #### Apache Webserver
 ./scripts/apache-setup.sh
 
@@ -152,6 +184,7 @@ Nach dem Update wir Apache installiert:
     $ sudo systemctl enable apache2
     $ sudo systemctl start apache2
 ```
+
 #### Mysql Setup
 ./scripts/mysql-setup.sh
 
@@ -167,6 +200,7 @@ Nach dem Update wir Apache installiert:
     $ sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/mysql/app-pass password test'
     $ sudo apt-get -y install phpmyadmin
 ```
+
 ### VMS
 | Server | Aufgbae |
 |:-:|-|
@@ -177,12 +211,15 @@ Nach dem Update wir Apache installiert:
 ***
  Nr. | Beschreibung | Kontrollie | Soll-Situation | Ist-Situation | Bestanden? |
 |:-:|-|-|-|-|:-:|
-| 1 | `ubuntu-01` sollte ubuntu-ldap pingen | ping 192.168.100.10  | ping funktioniert| ping funktioniert | Y |
-| 2 | `ubuntu-01` PhPmyadmin funktioniert? via IP Zugriff | http://192.168.100.11/phpmyadmin/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
-| 3 | `ubuntu-02` Apache Server funktioniert? via IP Zugriff | http://192.168.100.12 | Zugriff erfolgreich | Zugriff erfolgreich | Y |
-| 4 | `ubuntu-02` Apache Server funktioniert? via Port Zugriff | http://localhost:8012/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
+| 1 | `ubuntu-1` sollte ubuntu-ldap pingen | ping 192.168.100.10  | ping funktioniert| ping funktioniert | Y |
+| 2 | `ubuntu-1` PhPmyadmin funktioniert? via IP Zugriff | http://192.168.100.11/phpmyadmin/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
+| 3 | `ubuntu-2` Apache Server funktioniert? via IP Zugriff | http://192.168.100.12 | Zugriff erfolgreich | Zugriff erfolgreich | Y |
+| 4 | `ubuntu-2` Apache Server funktioniert? via Port Zugriff | http://localhost:8012/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
 | 5 | `ubuntu-ldap` Zugriff SSH | vagrant ssh ubuntu-ldap | Zugriff erfolgreich | Zugriff erfolgreich | Y |
 | 6 | `ubuntu-ldap` Zugriff phpldapadmin | http://192.168.100.10/phpldapadmin/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
+| 7 | `ubuntu-1` Create Database via mysql shell | vagrant ssh<br>mysql -uroot -proot<br>create databse rocket<br>show databases; | Datenbank erstellt | Datenbank erstellt | Y |
+| 8 | `ubuntu-1` Create Database via phpmyadmin  | http://192.168.100.10/phpldapadmin/ | Datenbank erstellt | Datenbank erstellt | Y |
+
 
 ### Reflexion
 ***

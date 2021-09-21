@@ -32,6 +32,8 @@ Vagrant.configure("2") do |config|
         Dir::mkdir('./'+LDAPHOSTNAME)
       end
       master.vm.synced_folder './'+LDAPHOSTNAME, "/vagrant"
+      master.vm.provision "shell", path: "scripts/firewall-setup.sh"
+      master.vm.provision "shell", path: "scripts/vm-update.sh"
       master.vm.provision "shell", path: "scripts/apache-setup.sh"
       # localhost:8010/phpldapadmin/
       master.vm.provision "shell", path: "scripts/ldap-setup.sh"
@@ -49,6 +51,7 @@ Vagrant.configure("2") do |config|
       #end
       end
       # Shell Scripts Provision
+      subconfig.vm.provision "shell", path: "scripts/firewall-setup.sh"
       subconfig.vm.provision "shell", path: "scripts/vm-update.sh"
       subconfig.vm.provision "shell", path: "scripts/apache-setup.sh"
       subconfig.vm.provision "shell", path: "scripts/mysql-setup.sh", args: [mysql_root_password, mysql_version, mysql_enable_remote]
