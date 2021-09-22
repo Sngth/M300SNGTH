@@ -235,7 +235,7 @@ Nach dem Update wir Apache installiert:
 | 5 | `ubuntu-ldap` Zugriff SSH | vagrant ssh ubuntu-ldap | Zugriff erfolgreich | Zugriff erfolgreich | Y |
 | 6 | `ubuntu-ldap` Zugriff phpldapadmin | http://192.168.100.10/phpldapadmin/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
 | 7 | `ubuntu-1` Create Database via mysql shell | vagrant ssh<br>mysql -uroot -proot<br>create databse rocket<br>show databases; | Datenbank erstellt | Datenbank erstellt | Y |
-| 8 | `ubuntu-1` Create Database via phpmyadmin  | http://192.168.100.10/phpldapadmin/ | Datenbank erstellt | Datenbank erstellt | Y |
+| 8 | `ubuntu-1` Create Database via phpmyadmin  | http://192.168.100.10/phpmyadmin/ | Datenbank erstellt | Datenbank erstellt | Y |
 
 
 ### Reflexion
