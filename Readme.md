@@ -2,7 +2,7 @@ M300 - 00 Personelles
 ===================
 Auf diesem Folder findet man meine Fortschritte, Dokumentation und Ergbnisse
 # Inhaltsverzeichnis
-- [Lerndokumentation](#Lerndokumentation)
+- [Lerndokumentation](#Lerndokumentation-LB2)
   - [25.August.2021](#25-August-2021)
   - [08.September.2021](#08-September-2021)
 - [Notizen](#Notizen)
@@ -14,7 +14,7 @@ Auf diesem Folder findet man meine Fortschritte, Dokumentation und Ergbnisse
     - [Reflexion](#Reflexion)
     - [Version History](#Version-History)
 
-### Lerndokumentation
+### Lerndokumentation LB2
 ***
 
 #### 25 August 2021
