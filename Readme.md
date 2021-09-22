@@ -142,6 +142,12 @@ Die IPs werden automatisch und statisch vergeben sodass kein Konflikt besteht fa
 * UFW Firewall aktivieren
 * Zugang nur via SSH
 
+#### Updates
+```
+    $ sudo apt update && sudo apt upgrade -y
+    $ sudo apt autoremove -y
+```
+
 #### LDAP
 Während der Installation wird die LDAPSeite durch User und Passwort geschützt.
 
@@ -244,7 +250,7 @@ Vor diesem Projekt hatte ich noch nie etwas von Vagrant gehört, es war sehr neu
 
 Am Anfang wollte ich ein Projekt mit Windows machen leider funktionierte es nicht so wie gewollt. Nach dieses Fehlschlägen habe ich mich für ein Projekt mit Linux entschieden, was ich auch im Endeffekt auch im Betrieb demnächst benutzen kann für ein kommendes Projekt.
 
-Beim arbeiten dieses Projektes habe ich fast nie mit Git bash gearbeitet nur mit VS, Virtualbox und Github Desktop, der Vorteil beim VS Code man kann alles in einem machen ich konnte im VS einen Terminal aufmachen und dort die Befehle ausführen oder die Daten ins Respository pushen.
+Beim arbeiten dieses Projektes habe ich fast nie mit Git bash gearbeitet nur mit VS, Virtualbox und Github Desktop, der Vorteil beim VS Code man kann alles in einem machen ich konnte im VS einen Terminal aufmachen und dort die Befehle ausführen oder die Dateien ins Respository pushen.
 
 Beim Lernfortschritt habe ich sehr vieles in Vagrant gelernt, aber bei Linux und Co habe ich fast nichts neues kennengelernt, da ich sehr vieles schon durch die anderen Module und Lehrbetrieb kannte.
 
