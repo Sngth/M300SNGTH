@@ -2,11 +2,11 @@ M300 - 00 Personelles
 ===================
 Auf diesem Folder findet man meine Fortschritte, Dokumentation und Ergbnisse
 # Inhaltsverzeichnis
-- [Lerndokumentation](#Lerndokumentation-LB2)
-  - [25.August.2021](#25-August-2021)
-  - [08.September.2021](#08-September-2021)
-- [Notizen](#Notizen)
-- [Dokumentation](#Dokumentation)
+- [Lerndokumentation LB2](#Lerndokumentation-LB2)
+  - [25 August 2021](#25-August-2021)
+  - [08 September 2021](#08-September-2021)
+  - [Notizen](#Notizen)
+  - [Dokumentation](#Dokumentation)
     - [Sicherheitsaspekte](#Sicherheitsaspekte)
     - [Technische Angaben](#Technische-Angaben)
     - [VMS](#VMS)
