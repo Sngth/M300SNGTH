@@ -131,7 +131,7 @@ Mit dem Befehl "vagrant list-commands" werden alle Befehle aufgeführt:
 
 ### Netzwerkplan
 ***
-![Netzwerkplan](https://github.com/Sngth/M300SNGTH/blob/main/assets/Bilder/Netzwerkplan.png?raw=true)
+![Netzwerkplan](https://github.com/Sngth/M300SNGTH/blob/main/LB2/Bilder/Netzwerkplan.png?raw=true)
 
 Die IPs werden automatisch und statisch vergeben sodass kein Konflikt besteht falls eine IP verwendet wird, wird die IP nicht verwendet.
 
