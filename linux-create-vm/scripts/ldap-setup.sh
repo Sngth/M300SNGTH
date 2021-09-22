@@ -12,6 +12,6 @@ sudo debconf-set-selections <<<'slapd slapd/internal/adminpw password admin'
 sudo debconf-set-selections <<<'slapd slapd/password1 password admin'
 sudo apt-get install -y slapd ldap-utils phpldapadmin
 # Patch Standarddomain
-sudo sed -i -e's/dc=sngth,dc=ch/dc=nodomain/' /etc/phpldapadmin/config.php
+sudo sed -i -e's/dc=example,dc=com/dc=nodomain/' /etc/phpldapadmin/config.php
 sudo service apache2 restart
-sudo hostnamectl set-hostname ubuntu-ldap.sngth.ch
+sudo hostnamectl set-hostname ubuntu-ldap.example.com
