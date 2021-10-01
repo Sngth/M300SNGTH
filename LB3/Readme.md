@@ -46,29 +46,9 @@ Wir haben heute Docker kennengelernt.
 * Git kannte ich bereits schon von den vergangenen Modulen
 * Repository erstellt mit einem Readme.md
 
-#### 08 September 2021
-***
-Heute habe ich weiter an meinem Vagrantfile gearbeitet. Am Anfang wollte ich ein Projekt mit Windows machen leider klappte es nicht so wie gewollt, da ich sehr viele Probleme hatte, aber nachher endschied ich mich für Linux da es viel besser und eifacher lauft zum Sachen automatisieren
+##### Docker
+* Mit Docker habe ich einmal gearbeitet, aber nie so genau geschaut.
 
-Ich habe es geschafft, mehrere VMs mit einer Schleife zu erstellen und externe SH-Skripte zuzuweisen. IP werden auch automatisch über die Nummer erstellt und ich kann auf das System entweder über localhost:port oder auch über die zugewiesene IP zugreifen. Nachher habe ich noch einen LDAP Server im Script implementiert.
-
-##### Probleme
-* Vagrant gab beim Starten eine Menge Fehlermeldungen aus. Durch ein Forum konnte ich das Problem beheben und weiterarbeiten. Desöfteren habe ich Probleme mit Virtualbox er löscht die VM aber er löscht Sie nicht und wenn man diese löschen möchte muss man zuerst den PC neustarten was sehr mühsam war. 
-
-#### Mein Wissenstand
-##### Linux
-* -
-
-##### Virtualisierung
-* -
-
-##### Vagrant
-* Mehrere Vms mit Loop erstellen
-* Datenbank erstellen
-* Für die automatische Konfiguration von VirtualBox Guest Additions installieren `vagrant-vbguest`:<br>`vagrant plugin install vagrant-vbguest`
-
-##### Git
-* -
 
 ## Notizen
 ***
@@ -130,7 +110,7 @@ Mit dem Befehl "vagrant list-commands" werden alle Befehle aufgeführt:
 
 ### Netzwerkplan
 ***
-![Netzwerkplan](https://github.com/Sngth/M300SNGTH/blob/main/LB2/Bilder/Netzwerkplan.png?raw=true)
+![Netzwerkplan]()
 
 Die IPs werden automatisch und statisch vergeben sodass kein Konflikt besteht falls eine IP verwendet wird, wird die IP nicht verwendet.
 
@@ -186,42 +166,6 @@ fail2ban ist ein Set aus Client, Server und Konfigurationsdateien, welches Logda
 
 ### Technische Angaben
 ***
-#### Updates
-./scripts/vm-update.sh
-
-Bevor Tools installiert werden ihm diese commands:   
-```
-    $ sudo apt update && sudo apt upgrade -y
-    $ sudo apt autoremove -y
-```
-
-#### Apache Webserver
-./scripts/apache-setup.sh
-
-Nach dem Update wir Apache installiert:   
-```
-    $ sudo apt update
-    $ sudo apt install apache2 -y
-    $ sudo ufw allow 'Apache'
-    $ sudo systemctl enable apache2
-    $ sudo systemctl start apache2
-```
-
-#### Mysql Setup
-./scripts/mysql-setup.sh
-
-#### Phpmyadmin
-./scripts/phpmyadmin-setup.sh
-```
-    $ sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/dbconfig-install boolean true'
-    $ sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/setup-password password test'
-    $ sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/app-password-confirm password test'
-    $ sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/password-confirm password test'
-    $ sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2'
-    $ sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/mysql/admin-pass password test'
-    $ sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/mysql/app-pass password test'
-    $ sudo apt-get -y install phpmyadmin
-```
 
 ### VMS
 | Server | Aufgbae |
@@ -262,41 +206,7 @@ Contributors names and contact info
 Sangeeth Sivakumaran
 
 #### Version History
-* 0.6
-    * Readme.md add content
-    * Vagrantfile adjust
-    * Gitignore adjust
-    * SH Scripts created and adjust
-* 0.7
-    * Readme.md add content
-    * Vagrantfile adjust
-    * Gitignore adjust
-    * SH Scripts created
-* 0.6
-    * Readme.md add content
-    * OLD.txt file created for testing
-    * Vagrantfile adjust
-    * Gitignore adjust
-* 0.5
-    * Readme.md add content
-    * Vagrantfile adjust
-    * Gitignore adjust
-* 0.4
-    * Readme.md add content
-    * Vagrantfile edited
-    * Gitignore created
-* 0.3
-    * Folders created
-    * Readme.md add content
-    * Vagrantfile edited
-* 0.2
-    * added README-md file
-    * added commands to Vagrantfile
-    * Vagrantfiles created
-* 0.1
-    * Initial Release
-    * M300 Forked
-    * Ordner 00-Personelles erstellt
+* [History](https://github.com/Sngth/M300SNGTH/blob/main/Readme.md)
 
 #### Acknowledgments
 
