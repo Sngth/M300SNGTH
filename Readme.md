@@ -3,9 +3,9 @@ M300 - Dokumentation
 Auf diesem Folder findet man meine Fortschritte, Dokumentation und Ergbnisse
 # Inhaltsverzeichnis
  - [LB2](https://github.com/Sngth/M300SNGTH/tree/main/LB2)
-     - [LB2-Dokumentation](https://github.com/Sngth/M300SNGTH/tree/main/LB2)
+     - [LB2-Dokumentation](https://github.com/Sngth/M300SNGTH/blob/main/LB2/Readme.md)
  - [LB3](https://github.com/Sngth/M300SNGTH/tree/main/LB3)
-     - [LB3-Dokumentation](https://github.com/Sngth/M300SNGTH/tree/main/LB2)
+     - [LB3-Dokumentation](https://github.com/Sngth/M300SNGTH/blob/main/LB3/Readme.md)
 
 ### GitHub README.md:
 

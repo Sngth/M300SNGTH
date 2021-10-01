@@ -2,6 +2,7 @@ M300 - LB3 Dokumentation
 ===================
 
 # Inhaltsverzeichnis
+-[LB3](#LB3)
     - [Lerndokumentation](#Lerndokumentation)
         - [22 September 2021](#22-September-2021)
     - [Notizen](#Notizen)
@@ -12,6 +13,8 @@ M300 - LB3 Dokumentation
         - [Test](#Test)
         - [Reflexion](#Reflexion)
 - [Version History](#Version-History)
+
+## LB3
 
 ### Lerndokumentation
 ***
