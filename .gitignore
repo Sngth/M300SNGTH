@@ -66,3 +66,16 @@ LB2/linux-create-vm/.vagrant/machines/ubuntu-1/virtualbox/box_meta
 LB2/linux-create-vm/.vagrant/machines/ubuntu-1/virtualbox/action_set_name
 LB2/linux-create-vm/.vagrant/machines/ubuntu-1/virtualbox/action_provision
 LB2/linux-create-vm/.vagrant/bundler/global.sol
+*.sol
+*.rb
+*.log
+*.vsdx
+LB3/.vagrant/machines/default/virtualbox/action_set_name
+LB3/.vagrant/machines/default/virtualbox/box_meta
+LB3/.vagrant/machines/default/virtualbox/creator_uid
+LB3/.vagrant/machines/default/virtualbox/id
+LB3/.vagrant/machines/default/virtualbox/index_uuid
+LB3/.vagrant/machines/default/virtualbox/vagrant_cwd
+LB3/.vagrant/machines/default/virtualbox/synced_folders
+LB3/.vagrant/machines/default/virtualbox/private_key
+LB3/.vagrant/machines/default/virtualbox/action_provision
