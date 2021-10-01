@@ -3,15 +3,15 @@ M300 - LB3 Dokumentation
 
 # Inhaltsverzeichnis
 -[LB3](#LB3)
-    - [Lerndokumentation](#Lerndokumentation)
-        - [22 September 2021](#22-September-2021)
-    - [Notizen](#Notizen)
-    - [Dokumentation](#Dokumentation)
-        - [Sicherheitsaspekte](#Sicherheitsaspekte)
-        - [Technische Angaben](#Technische-Angaben)
-        - [VMS](#VMS)
-        - [Test](#Test)
-        - [Reflexion](#Reflexion)
+ - [Lerndokumentation](#Lerndokumentation)
+    - [22 September 2021](#22-September-2021)
+ - [Notizen](#Notizen)
+ - [Dokumentation](#Dokumentation)
+    - [Sicherheitsaspekte](#Sicherheitsaspekte)
+    - [Technische Angaben](#Technische-Angaben)
+    - [VMS](#VMS)
+    - [Test](#Test)
+    - [Reflexion](#Reflexion)
 - [Version History](#Version-History)
 
 ## LB3
