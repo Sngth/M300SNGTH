@@ -13,7 +13,7 @@ M300 - LB2 Dokumentation
     - [VMS](#VMS)
     - [Test](#Test)
     - [Reflexion](#Reflexion)
-- [Version History](#Version-History)
+ - [Version History](#Version-History)
 
 ## LB2
 

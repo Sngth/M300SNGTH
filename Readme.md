@@ -6,6 +6,7 @@ Auf diesem Folder findet man meine Fortschritte, Dokumentation und Ergbnisse
      - [LB2-Dokumentation](https://github.com/Sngth/M300SNGTH/blob/main/LB2/Readme.md)
  - [LB3](https://github.com/Sngth/M300SNGTH/tree/main/LB3)
      - [LB3-Dokumentation](https://github.com/Sngth/M300SNGTH/blob/main/LB3/Readme.md)
+ - [Version History](#Version-History)
 
 ### GitHub README.md:
 
