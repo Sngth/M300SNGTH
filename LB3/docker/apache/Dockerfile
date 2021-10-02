@@ -3,8 +3,8 @@
 #
 FROM ubuntu:latest
 
-RUN sudo apt-get update
-RUN sudo apt-get -q -y install apache2 
+RUN apt-get update
+RUN apt-get -q -y install apache2 
 
 # Konfiguration Apache
 ENV APACHE_RUN_USER www-data
