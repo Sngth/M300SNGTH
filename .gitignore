@@ -79,3 +79,12 @@ LB3/.vagrant/machines/default/virtualbox/vagrant_cwd
 LB3/.vagrant/machines/default/virtualbox/synced_folders
 LB3/.vagrant/machines/default/virtualbox/private_key
 LB3/.vagrant/machines/default/virtualbox/action_provision
+docker/.vagrant/machines/default/virtualbox/action_provision
+docker/.vagrant/machines/default/virtualbox/action_set_name
+docker/.vagrant/machines/default/virtualbox/box_meta
+docker/.vagrant/machines/default/virtualbox/creator_uid
+docker/.vagrant/machines/default/virtualbox/id
+docker/.vagrant/machines/default/virtualbox/index_uuid
+docker/.vagrant/machines/default/virtualbox/private_key
+docker/.vagrant/machines/default/virtualbox/synced_folders
+docker/.vagrant/machines/default/virtualbox/vagrant_cwd
