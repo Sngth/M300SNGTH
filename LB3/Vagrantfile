@@ -19,15 +19,15 @@ Vagrant.configure("2") do |config|
     #end
     end
     # Shell Scripts Provision
-    subconfig.vm.provision "shell", path: "scripts/docker-setup.sh"
+    subconfig.vm.provision "shell", path: "scripts/vm-setup.sh"
     #config.vm.provision "docker" do |d|
       #d.cmd "./Scripts/Dockerfile"
       #d.build_image "/vagrant/Dockerfile", args: "-t sngth/nginx"
       #d.run "sngth/nginx"
     #end
-    config.vm.provision "docker" do |docker|
-      docker.pull_images "ubuntu"
-    end
+    #config.vm.provision "docker" do |docker|
+      #docker.pull_images "ubuntu"
+    #end
   end
   # Enable agent forwarding over SSH connections
   config.ssh.forward_agent = true
