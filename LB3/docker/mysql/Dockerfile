@@ -18,6 +18,13 @@
 
 FROM ubuntu:latest
 
+RUN apt-get update -y && \
+    apt-get autoremove -y && \
+    apt-get install --no-install-recommends lsb-release && \
+    tar -xvf archive.tar.gz &&\
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf archive.tar.gz
+
 ADD ./apache-setup.sh /tmp/apache-setup.sh
 RUN /bin/sh /tmp/apache-setup.sh
 

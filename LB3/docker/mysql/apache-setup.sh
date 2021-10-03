@@ -1,5 +1,5 @@
 apt update
-apt install apache2 -y
+apt install apache2 -y -q
 ufw allow 'Apache'
 systemctl enable apache2
 systemctl start apache2
