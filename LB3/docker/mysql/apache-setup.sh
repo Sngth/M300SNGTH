@@ -1,9 +1,9 @@
-sudo apt update
-sudo apt install apache2 -y
-sudo ufw allow 'Apache'
-sudo systemctl enable apache2
-sudo systemctl start apache2
-sudo a2enmod proxy
-sudo a2enmod proxy_http
-sudo a2enmod proxy_balancer
-sudo a2enmod lbmethod_byrequests
+apt update
+apt install apache2 -y
+ufw allow 'Apache'
+systemctl enable apache2
+systemctl start apache2
+a2enmod proxy
+a2enmod proxy_http
+a2enmod proxy_balancer
+a2enmod lbmethod_byrequests
