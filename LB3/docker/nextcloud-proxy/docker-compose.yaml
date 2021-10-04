@@ -1,0 +1,56 @@
+version: '3' 
+
+services:
+
+  db:
+    image: mariadb
+    restart: always
+    volumes:
+      - /opt/dockervolumes/nextcloud/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=sehrgeheimroot
+    env_file:
+      - db.env
+    networks:
+      - nextcloudnet
+
+  backup-mysql:
+    image: dsteinkopf/backup-all-mysql:latest
+    restart: always
+    environment:
+      - BACKUP_INTERVAL=86400
+      - BACKUP_FIRSTDELAY=4000
+      - 'MYSQL_CONNECTION_PARAMS=--user=root --host=db --password=sehrgeheim123'
+    links:
+      - db
+    volumes:
+      - /opt/dockervolumes/nextcloud/mysql-backup:/var/dbdumps
+    networks:
+      - nextcloudnet
+
+  nextcloud:
+    image: nextcloud:apache
+    restart: always
+    ports:
+      - 8094:80
+    links:
+      - db
+    volumes:
+      - /opt/dockervolumes/nextcloud/var_www_html:/var/www/html
+      - /opt/dockervolumes/nextcloud/data:/var/www/html/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - MYSQL_HOST=db
+      - NEXTCLOUD_ADMIN_USER=admin
+      - NEXTCLOUD_ADMIN_PASSWORD=sehrgeheim456
+    env_file:
+      - db.env
+    networks:
+      - nextcloudnet
+
+
+networks:
+
+  nextcloudnet:
+    # empty

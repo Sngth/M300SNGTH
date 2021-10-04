@@ -17,9 +17,13 @@ Contributors names and contact info
 Sangeeth Sivakumaran
 
 #### Version History
-* 0.6
+* 0.8
     * Readme.md  add content
-    * Vagrantfile adjust
+    * LB3 Folder created
+    * LB2 Folder created
+    * Dockerfile created
+    * Readmd LB2 created
+    * Readmd LB3 created
     * Gitignore adjust
     * SH Scripts created and adjust
 * 0.7

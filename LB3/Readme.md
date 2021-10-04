@@ -26,7 +26,7 @@ Diese Tools haben wir installiert:
 
 * Docker
 
-Wir haben heute Docker kennengelernt.
+Wir haben heute Docker kennengelernt. 
 
 ##### Probleme
 * Heute gab es keine Probleme
@@ -47,13 +47,13 @@ Wir haben heute Docker kennengelernt.
 * Repository erstellt mit einem Readme.md
 
 ##### Docker
-* Mit Docker habe ich einmal gearbeitet, aber nie so genau geschaut.
+* Mit Docker habe ich einmal gearbeitet, aber nie so genau geschaut. Wir haben im Betrieb mit Docker für Webserver verwendet.
 
 
 ## Notizen
 ***
 
-##### Docker-Befehle
+### Docker-Befehle
 Die Verwendung von docker besteht darin, eine Kette von Optionen und Befehlen zu übergeben, gefolgt von Argumenten. Die Syntax übernimmt diese Form:
 ```
 $ docker [option] [command] [arguments]
@@ -106,6 +106,13 @@ update            |Update configuration of one or more containers
 version           |Show the Docker version information
 wait              |Block until one or more containers stop, then print their exit codes
 
+#### Weitere Befehle
+##### Alle Images entfernen
+```
+$ docker rmi $(docker images -a -q)
+$ docker rm $(docker ps -a -f status=exited -q)
+```
+
 ## Dokumentation
 ***
 
@@ -115,77 +122,64 @@ wait              |Block until one or more containers stop, then print their exi
 
 ### Sicherheitsaspekte
 ***
-* Server mit den neusten Sicherheitspatches installiert
-* Systeme Passwortgeschützt
-* UFW Firewall aktivieren
-* Zugang nur via SSH
 
-#### Updates
+#### Nextcloud 
+Nach der Nextcloud Installation wird noch ein Reverse Proxy für den Webserver installiert
 ```
-    $ sudo apt update && sudo apt upgrade -y
-    $ sudo apt autoremove -y
+<IfModule mod_ssl.c>
+<VirtualHost *:443>
+
+        #  General setup for the virtual host
+        DocumentRoot "/var/www"
+        ServerName my-nextcloud.sngth.net
+        ServerAdmin webmaster@sngth.ch
+        ErrorLog /var/log/apache2/my-nextcloud.sngth.ch_error.log
+        TransferLog /var/log/apache2/my-nextcloud.sngth.ch_access.log
+
+        Include /etc/apache2/dstk-all-sites-incl.conf
+
+        # see https://doc.owncloud.org/server/8.1/admin_manual/configuration_server/harden_server.html
+        Header always add Strict-Transport-Security "max-age=15768000"
+
+        # RewriteLogLevel 3
+
+        RewriteEngine On
+        ProxyRequests Off
+
+        ProxyPass        / http://nextcloud.sngth.ch:8094/
+        ProxyPassReverse / http://nextcloud.sngth.ch:8094/
+
+        SSLCertificateFile /etc/letsencrypt/live/my-nextcloud.sngth.ch/fullchain.pem
+        SSLCertificateKeyFile /etc/letsencrypt/live/my-nextcloud.sngth.ch/privkey.pem
+        Include /etc/letsencrypt/options-ssl-apache.conf
+</VirtualHost>
+</IfModule>
 ```
-
-#### Apache Webserver
-Nach der Apache Installation wird noch ein Reverse Proxy für den Webserver installiert
-```
-    $ sudo a2enmod proxy
-    $ sudo a2enmod proxy_http
-    $ sudo a2enmod proxy_balancer
-    $ sudo a2enmod lbmethod_byrequests
-```
-
-#### MySQL
-Mit MySql Secure Installation schützt die Datenbank und der User wird mit einem Passwort geschützt
-
-#### PHPMyadmin
-Während der Installation wird die PHPSeite durch User und Passwort geschützt.
-
-#### Firewall
-| Server | Firewall Rules |
-|:-:|-|
-| ubuntu-ldap | sudo ufw allow 'Apache'<br>sudo ufw allow 80/tcp<br>sudo ufw allow 22/tcp<br>sudo ufw default deny incoming<br>sudo ufw default allow outgoing |
-| ubuntu-xx | sudo ufw allow 'Apache'<br>sudo ufw allow 22/tcp<br>sudo ufw default deny incoming<br>sudo ufw default allow outgoing |
-
-#### Zugriff via SSH tunnel
-Sobald die VMs eingerichtet sind (`vagrant up`), sind sie über:
-```shell
-    vagrant ssh ubuntu-ldap
-    vagrant ssh ubuntu-xx
-```
-
-#### Fail2Ban installiert
-fail2ban ist ein Set aus Client, Server und Konfigurationsdateien, welches Logdateien überwacht, dort nach vordefinierten Mustern sucht und nach diesen temporär IP-Adressen sperrt. Ziel des Programms ist, alle Serverdienste gegen Angriffe des Typs Denial of Service (DoS) abzusichern.
-```
-    $sudo apt-get install fail2ban -y
-```
-
 ### Technische Angaben
 ***
-
 ### VMS
 | Server | Aufgbae |
 |:-:|-|
-| ubuntu-ldap | LDAP Server |
-| ubuntu-xx | Apache, Mysql und Phpmyadmin server |
+| nextcloud-1 | Nextcloud|
+| nextcloud-2 | Nextcloud mit Proxy und Backup |
 
 ### Test
 ***
  Nr. | Beschreibung | Kontrollie | Soll-Situation | Ist-Situation | Bestanden? |
 |:-:|-|-|-|-|:-:|
-| 1 | `ubuntu-1` sollte ubuntu-ldap pingen | ping 192.168.100.10  | ping funktioniert| ping funktioniert | Y |
-| 2 | `ubuntu-1` PhPmyadmin funktioniert? via IP Zugriff | http://192.168.100.11/phpmyadmin/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
-| 3 | `ubuntu-2` Apache Server funktioniert? via IP Zugriff | http://192.168.100.12 | Zugriff erfolgreich | Zugriff erfolgreich | Y |
-| 4 | `ubuntu-2` Apache Server funktioniert? via Port Zugriff | http://localhost:8012/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
-| 5 | `ubuntu-ldap` Zugriff SSH | vagrant ssh ubuntu-ldap | Zugriff erfolgreich | Zugriff erfolgreich | Y |
-| 6 | `ubuntu-ldap` Zugriff phpldapadmin | http://192.168.100.10/phpldapadmin/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
-| 7 | `ubuntu-1` Create Database via mysql shell | vagrant ssh<br>mysql -uroot -proot<br>create databse rocket<br>show databases; | Datenbank erstellt | Datenbank erstellt | Y |
-| 8 | `ubuntu-1` Create Database via phpmyadmin  | http://192.168.100.10/phpmyadmin/ | Datenbank erstellt | Datenbank erstellt | Y |
+| 1 | `nextcloud-1` sollte ubuntu-ldap pingen | ping 192.168.100.10  | ping funktioniert| ping funktioniert | Y |
+| 2 | `nextcloud-2` PhPmyadmin funktioniert? via IP Zugriff | http://192.168.100.11/phpmyadmin/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
+| 3 | `nextcloud-1` Apache Server funktioniert? via IP Zugriff | http://192.168.100.12 | Zugriff erfolgreich | Zugriff erfolgreich | Y |
+| 4 | `nextcloud-2` Apache Server funktioniert? via Port Zugriff | http://localhost:8012/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
+| 5 | `nextcloud-1` Zugriff SSH | vagrant ssh ubuntu-ldap | Zugriff erfolgreich | Zugriff erfolgreich | Y |
+| 6 | `nextcloud-2` Zugriff phpldapadmin | http://192.168.100.10/phpldapadmin/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
+| 7 | `nextcloud-1` Create Database via mysql shell | vagrant ssh<br>mysql -uroot -proot<br>create databse rocket<br>show databases; | Datenbank erstellt | Datenbank erstellt | Y |
+| 8 | `nextcloud-2` Create Database via phpmyadmin  | http://192.168.100.10/phpmyadmin/ | Datenbank erstellt | Datenbank erstellt | Y |
 
 
 ### Reflexion
 ***
-Vor diesem Projekt hatte ich noch nie etwas von Vagrant gehört, es war sehr neu für mich. Am Anfang hatte ich ein bisschen Mühe, alles zu verarbeiten, aber nach ein paar Mal hatte ich den Dreh raus. Am Anfang habe ich die Dokumentation etwas vernachlässigt oder besser gesagt vergessen.In der Dokumentation habe ich einen Spickzettel für Befehle gemacht, damit ich ein bisschen den Überblick habe, was welcher Befehl macht. 
+Ich kannte Docker, aber habe nur  Am Anfang hatte ich ein bisschen Mühe, alles zu verarbeiten, aber nach ein paar Mal hatte ich den Dreh raus. Am Anfang habe ich die Dokumentation etwas vernachlässigt oder besser gesagt vergessen.In der Dokumentation habe ich einen Spickzettel für Befehle gemacht, damit ich ein bisschen den Überblick habe, was welcher Befehl macht. 
 
 Am Anfang wollte ich ein Projekt mit Windows machen leider funktionierte es nicht so wie gewollt. Nach dieses Fehlschlägen habe ich mich für ein Projekt mit Linux entschieden, was ich auch im Endeffekt auch im Betrieb demnächst benutzen kann für ein kommendes Projekt.
 
