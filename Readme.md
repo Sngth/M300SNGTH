@@ -17,6 +17,12 @@ Contributors names and contact info
 Sangeeth Sivakumaran
 
 #### Version History
+* 0.9
+    * Readme.md add content
+    * Vagrantfile adjust
+    * Gitignore adjust
+    * Dockerfile adjust
+    * Docker compose created and adjust
 * 0.8
     * Readme.md  add content
     * LB3 Folder created

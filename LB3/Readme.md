@@ -21,15 +21,15 @@ M300 - LB3 Dokumentation
 
 #### 22 September 2021
 ***
-Heute haben wir mit dem Modul 300 angefangen. Wir haben unser Gerät mit den nötigsten Softwares installiert. 
+Heute haben wir mit dem Modul 300 angefangen. Wir haben unser Gerät mit den nötigsten Softwares installiert.
 Diese Tools haben wir installiert:
 
 * Docker
 
-Wir haben heute Docker kennengelernt. 
+Wir haben heute Docker kennengelernt. Wir haben die Einführung zu Docker und die Verwendung von Docker gezeigt bekommen. Nach der Einführung haben wir docker getestet. weiter Docker habe ich im Betrieb mal gebraucht, habe aber nie mit Dockerfiles oder Compose Files gearbeitet.
 
 ##### Probleme
-* Heute gab es keine Probleme
+* Heute gab es keine Probleme.
 
 #### Mein Wissenstand
 ##### Linux
@@ -123,12 +123,11 @@ $ docker rm $(docker ps -a -f status=exited -q)
 ### Sicherheitsaspekte
 ***
 
-#### Nextcloud 
+#### Nextcloud-Proxy 
 Nach der Nextcloud Installation wird noch ein Reverse Proxy für den Webserver installiert
 ```
 <IfModule mod_ssl.c>
 <VirtualHost *:443>
-
         #  General setup for the virtual host
         DocumentRoot "/var/www"
         ServerName my-nextcloud.sngth.net
@@ -158,34 +157,30 @@ Nach der Nextcloud Installation wird noch ein Reverse Proxy für den Webserver i
 ### Technische Angaben
 ***
 ### VMS
-| Server | Aufgbae |
+| Server | Aufgabe |
 |:-:|-|
-| nextcloud-1 | Nextcloud|
-| nextcloud-2 | Nextcloud mit Proxy und Backup |
+| nextcloud-1 | Nextcloud mit DB, Webserver|
+| nextcloud-2 | Nextcloud mit DB, Webserver, Https, Proxy und Backup |
 
 ### Test
 ***
  Nr. | Beschreibung | Kontrollie | Soll-Situation | Ist-Situation | Bestanden? |
 |:-:|-|-|-|-|:-:|
-| 1 | `nextcloud-1` sollte ubuntu-ldap pingen | ping 192.168.100.10  | ping funktioniert| ping funktioniert | Y |
-| 2 | `nextcloud-2` PhPmyadmin funktioniert? via IP Zugriff | http://192.168.100.11/phpmyadmin/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
-| 3 | `nextcloud-1` Apache Server funktioniert? via IP Zugriff | http://192.168.100.12 | Zugriff erfolgreich | Zugriff erfolgreich | Y |
-| 4 | `nextcloud-2` Apache Server funktioniert? via Port Zugriff | http://localhost:8012/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
-| 5 | `nextcloud-1` Zugriff SSH | vagrant ssh ubuntu-ldap | Zugriff erfolgreich | Zugriff erfolgreich | Y |
-| 6 | `nextcloud-2` Zugriff phpldapadmin | http://192.168.100.10/phpldapadmin/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
-| 7 | `nextcloud-1` Create Database via mysql shell | vagrant ssh<br>mysql -uroot -proot<br>create databse rocket<br>show databases; | Datenbank erstellt | Datenbank erstellt | Y |
-| 8 | `nextcloud-2` Create Database via phpmyadmin  | http://192.168.100.10/phpmyadmin/ | Datenbank erstellt | Datenbank erstellt | Y |
-
+| 1 | `nextcloud-1`  | Zugang via IP  | http://192.168.100.11:8080/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
+| 2 | `nextcloud-2` Zugang via IP? ohne DNS Eintrag | http://192.168.100.11:8094/ | Zugriff fehlgeschlagen | Zugriff fehlgeschlagen | Y |
+| 3 | `nextcloud-1` Einrichtung ohne Https? | http://192.168.100.12 | Einrichtung erfolgreich | Einrichtung erfolgreich | Y |
+| 4 | `nextcloud-2` Zugang via IP? mit DNS Eintrag | http://nextcloud.sngth.ch:8094/ | Zugriff erfolgreich | Zugriff erfolgreich | Y |
+| 5 | `nextcloud-2` Einrichtung ohne Https? | http://192.168.100.11:8094/ | Zugriff fehlgeschlagen | Zugriff fehlgeschlagen | Y |
 
 ### Reflexion
 ***
-Ich kannte Docker, aber habe nur  Am Anfang hatte ich ein bisschen Mühe, alles zu verarbeiten, aber nach ein paar Mal hatte ich den Dreh raus. Am Anfang habe ich die Dokumentation etwas vernachlässigt oder besser gesagt vergessen.In der Dokumentation habe ich einen Spickzettel für Befehle gemacht, damit ich ein bisschen den Überblick habe, was welcher Befehl macht. 
-
-Am Anfang wollte ich ein Projekt mit Windows machen leider funktionierte es nicht so wie gewollt. Nach dieses Fehlschlägen habe ich mich für ein Projekt mit Linux entschieden, was ich auch im Endeffekt auch im Betrieb demnächst benutzen kann für ein kommendes Projekt.
+Ich kannte Docker, aber habe nur  Am Anfang hatte ich ein bisschen Mühe, alles zu verarbeiten, aber nach ein paar Mal hatte ich den Dreh raus. Am Anfang habe ich die Dokumentation etwas vernachlässigt oder besser gesagt vergessen. In der Dokumentation habe ich einen Spickzettel für Befehle gemacht, damit ich ein bisschen den Überblick habe, was welcher Befehl macht. 
 
 Beim arbeiten dieses Projektes habe ich fast nie mit Git bash gearbeitet nur mit VS, Virtualbox und Github Desktop, der Vorteil beim VS Code man kann alles in einem machen ich konnte im VS einen Terminal aufmachen und dort die Befehle ausführen oder die Dateien ins Respository pushen.
 
-Beim Lernfortschritt habe ich sehr vieles in Vagrant gelernt, aber bei Linux und Co habe ich fast nichts neues kennengelernt, da ich sehr vieles schon durch die anderen Module und Lehrbetrieb kannte.
+Beim Lernfortschritt habe ich sehr vieles über Docker gelernt, aber bei Linux und Co habe ich fast nichts neues kennengelernt, da ich sehr vieles schon durch die anderen Module und Lehrbetrieb kannte.
+
+Die Idee war das wir das Nextcloud für unser Startup gut gebrauch können, da wir momentan noch mit der Cloud der TBZ arbeiten.
 
 ### GitHub README.md:
 
